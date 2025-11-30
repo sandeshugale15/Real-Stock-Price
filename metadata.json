@@ -1,0 +1,5 @@
+{
+  "name": "NovaTrade AI",
+  "description": "A real-time styled stock market dashboard powered by Gemini. Features live-simulated pricing, AI-driven market analysis via Google Search grounding, and interactive charts.",
+  "requestFramePermissions": []
+}
