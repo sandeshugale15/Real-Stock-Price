@@ -21,7 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({ symbol }) => {
 
   const loadStock = useCallback(async (sym: string) => {
     setStatus(LoadingState.LOADING);
-    if (simulationInterval.current) clearInterval(simulationInterval.current);
+    if (simulationInterval.current) window.clearInterval(simulationInterval.current);
     
     try {
       const stockData = await fetchStockOverview(sym);
@@ -46,7 +46,7 @@ const Dashboard: React.FC<DashboardProps> = ({ symbol }) => {
   // Simulate "Tick-by-Tick" updates locally for visual effect
   useEffect(() => {
     if (status === LoadingState.SUCCESS && data) {
-      simulationInterval.current = setInterval(() => {
+      simulationInterval.current = window.setInterval(() => {
         setLivePrice(prev => {
           const volatility = prev * 0.0005; // 0.05% fluctuation
           const change = (Math.random() - 0.5) * volatility;
@@ -55,7 +55,7 @@ const Dashboard: React.FC<DashboardProps> = ({ symbol }) => {
       }, 2000);
     }
     return () => {
-      if (simulationInterval.current) clearInterval(simulationInterval.current);
+      if (simulationInterval.current) window.clearInterval(simulationInterval.current);
     };
   }, [status, data]);
 
